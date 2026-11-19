@@ -1,0 +1,33 @@
+# /etc/systemd/system/openwa.service  (bare-metal install, see docs/deploy/02-vps-bare-metal-systemd.md)
+# Assumes: user "openwa", code in /opt/openwa, Node 22 at /usr/bin/node, config in /opt/openwa/.env
+[Unit]
+Description=WhatsApp-SRV (OpenWA gateway)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=openwa
+Group=openwa
+WorkingDirectory=/opt/openwa
+EnvironmentFile=/opt/openwa/.env
+ExecStart=/usr/bin/node dist/main
+Restart=always
+RestartSec=5
+# OpenWA's own graceful shutdown allows up to ~67s
+TimeoutStopSec=75
+KillMode=mixed
+# Chromium needs many processes/files
+LimitNOFILE=65536
+TasksMax=4096
+MemoryMax=1500M
+
+# Hardening
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+ReadWritePaths=/opt/openwa/data
+
+[Install]
+WantedBy=multi-user.target

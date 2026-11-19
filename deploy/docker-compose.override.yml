@@ -1,0 +1,15 @@
+# Drop this next to OpenWA's docker-compose.yml (cp to /opt/openwa/docker-compose.override.yml).
+# `docker compose` merges it automatically.
+#
+# 1) Turns OFF the docker-socket-proxy. OpenWA only needs it for the dashboard's
+#    "built-in Postgres/Redis/MinIO" toggles. With it enabled, a compromised API container
+#    can reach the Docker daemon (= host root). If you manage datastores yourself, disable it.
+# 2) Pins the memory limit to your server size.
+services:
+  docker-proxy:
+    profiles: ['disabled']
+
+  openwa-api:
+    mem_limit: ${OPENWA_MEM_LIMIT:-1500m}
+    # The base file already has `depends_on: docker-proxy` with `required: false`,
+    # so a disabled proxy does not block startup.
