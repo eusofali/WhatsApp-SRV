@@ -15,6 +15,7 @@ This repo does **not** vendor OpenWA; the installers fetch it from upstream, so 
 | VPS, no Docker (systemd) | [docs/deploy/02-vps-bare-metal-systemd.md](docs/deploy/02-vps-bare-metal-systemd.md) |
 | cPanel/WHM **with root** | [docs/deploy/03-cpanel-whm-root.md](docs/deploy/03-cpanel-whm-root.md) |
 | cPanel shared, **no root** (+ Hybrid) | [docs/deploy/04-cpanel-shared-no-root.md](docs/deploy/04-cpanel-shared-no-root.md) |
+| **1 GB VPS + cPanel (your setup)** | [docs/deploy/06-your-setup-1gb-vps-plus-cpanel.md](docs/deploy/06-your-setup-1gb-vps-plus-cpanel.md) |
 | Backups, updates, security | [docs/deploy/05-operations-backup-update-security.md](docs/deploy/05-operations-backup-update-security.md) |
 
 ## Quick start (fresh Ubuntu/Debian VPS)
